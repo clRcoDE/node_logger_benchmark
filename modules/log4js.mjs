@@ -1,16 +1,35 @@
 
-import path from "path";
+// import path from "path";
 // import pino from "pino";
-const __dirname = path.resolve();
+// const __dirname = path.resolve();
 import log4js from 'log4js'
-const Llogger = log4js.getLogger()
-Llogger.level ='info'
 
+const Llogger = log4js.getLogger()
+
+
+// Llogger.level ='info's
+
+
+// log4js.configure({
+//   appenders: { cheese: { type: "file", filename: "cheese.log" }, weez:{type:"console" } },
+//   categories: { default: { appenders: ["cheese","weez"], level: "info" } },
+//   pm2:true,
+//   pm2InstanceVar:'INSTANCE_ID'
+// });
 
 log4js.configure({
-  appenders: { cheese: { type: "file", filename: "cheese.log" }, weez:{type:"console" } },
-  categories: { default: { appenders: ["cheese","weez"], level: "info" } },
+  appenders: {
+    cons:{type:"console" },
+    out: { type: 'file', filename: 'cheese.log' }
+  },
+  categories: {
+    default: { appenders: ['out','cons'], level: 'info' }
+  },
+  pm2: true,
+  disableClustering:true,
+  pm2InstanceVar: 'INSTANCE_ID'
 });
+
 
 const getRandomArbitrary = () => {
   return Math.random() * (999999999 - 100000000) + 100000000;

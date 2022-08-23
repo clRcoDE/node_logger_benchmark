@@ -7,9 +7,9 @@
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "dev": "nodemon index.mjs",
-    "dev:pino-cli": " nodemon index.mjs | npx pino-pretty",
-    "start":"node index.mjs",
-    "multi":"pm2 start index.mjs -i max --attach"
+    "dev:pino-cli": " nodemon index.mjs",
+    "start": "node index.mjs",
+    "multi": "pm2 start index.mjs -i max --attach"
   },
   "keywords": [
     "nodejs-logging",
@@ -20,6 +20,8 @@
   "license": "MIT",
   "dependencies": {
     "bunyan": "^1.8.15",
+    "bunyan-format": "^0.2.1",
+    "colors": "^1.4.0",
     "koa": "^2.13.4",
     "log4js": "^6.6.1",
     "pino": "^8.4.2",

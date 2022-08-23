@@ -14,7 +14,7 @@ export const normalLog = async (ctx) => {
     // console.log("__dirname:    ", __dirname);
   const NodeMessage = `log at ${Date.now()} user:${getRandomArbitrary()} \n`;
   // fs.writeFile("FILE.TXT", "TEXT", (err)=>{});
-  await fs.appendFile(`${__dirname}/modules/file.txt`, NodeMessage, (err) => {
+  await fs.appendFile(`${__dirname}/modules/file.log`, NodeMessage, (err) => {
     console.log("This is Write error", err);
   });
 

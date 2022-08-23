@@ -22,6 +22,9 @@
 
 import path from "path";
 import pino from "pino";
+import pretty from 'pino-pretty'
+// import { transport } from "winston";
+// const myPino = pretty(pino)
 const __dirname = path.resolve();
 
 const getRandomArbitrary = () => {
@@ -39,14 +42,25 @@ const levels = {
   debug: 10,
 };
 
-const streams = [
-  { stream: process.stdout },
-  { stream: pino.destination(`${__dirname}/combined.log`) },
-];
 
+// const stream = pretty({
+//   colorize: true
+// })
+// const logger = pino(stream)
+
+// const stream = pretty({
+//   colorize: true,
+//   destination:process.stdout
+// })
+const streams = [
+  { stream: process.stdout},
+  { stream: pino.destination({dest:`${__dirname}/combined.log`, sync:false}) },
+]
 const pLogger = pino(
+  // pretty({colorize:true}),
   {
     level:'info',
+    
     // customLevels: levels,
     // useOnlyCustomLevels: true,
     formatters: {
@@ -55,8 +69,8 @@ const pLogger = pino(
       },
     },
   },
-
-  pino.multistream(streams)
+  pino.multistream(streams),
+  
 );
 
 export const pinoLogger = async (ctx) => {
