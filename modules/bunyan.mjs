@@ -21,18 +21,18 @@ export const blogger = bunyan.createLogger({
   ],
 });
 
-const getRandomArbitrary = () => {
+function getRandomArbitrary () {
   return Math.random() * (999999999 - 100000000) + 100000000;
 };
 
-export const bunyanLogger = async (ctx) => {
+export async function bunyanLogger (ctx){
   const newLogRandomizer = Math.random();
-
+  ososher()
   try {
     if (newLogRandomizer > 0.5) {
       blogger.info(`log at ${getRandomArbitrary()}`);
     } else {
-      throw new Error("below 0.5");
+      throw new Error("normal crash below 0.5");
     }
   } catch (err) {
     blogger.error({
