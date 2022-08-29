@@ -31,6 +31,7 @@ export async function bunyanLogger (ctx){
   try {
     if (newLogRandomizer > 0.5) {
       blogger.info(`log at ${getRandomArbitrary()}`);
+      ctx.body = "hello Koa";
     } else {
       throw new Error("normal crash below 0.5");
     }
@@ -40,7 +41,10 @@ export async function bunyanLogger (ctx){
         email: `log at ${err} ${getRandomArbitrary()}`,
       },
     });
+    ctx.status = err.statusCode || err.status || 500;
+    ctx.body = err.message;
   }
 
-  ctx.body = "hello Koa";
+  
+
 };
